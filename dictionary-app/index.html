@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary App</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        a {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .logo {
+            text-align: center;
+            font: bold 50px "Space Mono";
+            color: #374758;
+            margin-bottom: 0;
+            margin-top: 24px;
+
+            display: flex;
+            justify-content: center;
+
+            align-items: center;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-right: 10px;
+        }
+
+        .form {
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            margin-top: 2em;
+        }
+
+        .search-bar {
+            background-color: #374758;
+            border: 2px solid transparent;
+            border-radius: 3px;
+            padding: .5em;
+            width: 300px;
+            color: white;
+            font-family: 'Space Mono';
+        }
+
+        .search-bar:focus {
+            border: 2px solid #E44E5A;
+            outline: none;
+        }
+
+        .submit-button {
+            width: 80px;
+            background-color: #E44E5A;
+            border: none;
+            color: white;
+
+            margin-left: .5em;
+            border-radius: 3px;
+            border: 3px solid transparent;
+
+            padding: .25em;
+
+            font-family: 'Space Mono';
+        }
+
+        .submit-button:focus{
+            outline: none;
+        }
+
+        .submit-button:active {
+            background-color: #9b353d;
+        }
+
+        body{
+            background-color: #111318;
+        }
+
+        .definition {
+            width: 80%;
+            background-color: rgba(255,255,255,0.4);
+            color: white;
+            margin: 0 auto;
+            margin-top: 10px;
+            font-family: "Space Mono";
+            min-height: 50px;
+            padding: 5px;
+        }
+
+        .part-of-speech {
+            font-weight: bold;
+        }
+
+        .example {
+            font-style: italic;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            height: 50px;
+            width: 100%;
+            left: 0;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+        }
+    </style>
+    
+    <script>
+        let container;
+        let partOfSpeech;
+        let definition;
+        let example;
+
+        window.onload = () => {
+            container = document.querySelector(".container");
+            partOfSpeech = document.querySelector(".part-of-speech");
+            definition = document.querySelector(".definition");
+            example = document.querySelector(".example");
+        }
+    </script>
+</head>
+<body>
+    <div class="logo">
+        <span class="material-icons icon">
+            history_edu
+        </span>Dictionary App
+    </div>
+    <form class="form" onsubmit="fetchDefinition(); return false">
+        <input class="search-bar" name="Search">
+        <input type="submit" class="submit-button">
+    </form>
+
+    <div class="container">
+        <div class="part-of-speech"></div>
+        <div class="definition">Search for a word to see its definition...</div>
+        <br>
+        <div class="example"></div>
+    </div>
+    <div class="footer">
+        Definitions courtesy of <a href="http://www.lexico.com">lexico.com</a> | A project by Gray Lewis
+    </div>
+    
+</body>
+</html>
