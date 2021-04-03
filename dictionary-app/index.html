@@ -82,7 +82,7 @@
             background-color: #111318;
         }
 
-        .definition {
+        .container {
             width: 80%;
             background-color: rgba(255,255,255,0.4);
             color: white;
@@ -117,12 +117,32 @@
         let partOfSpeech;
         let definition;
         let example;
+        let search;
 
         window.onload = () => {
             container = document.querySelector(".container");
             partOfSpeech = document.querySelector(".part-of-speech");
             definition = document.querySelector(".definition");
             example = document.querySelector(".example");
+            search = document.querySelector(".search-bar");
+        }
+
+        function fetchDefinition() {
+            const word = search.value.toLowerCase();
+
+            fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+              .then(res => res.json())
+              .then(res => {
+                  definition.innerText = res[0].meanings[0].definitions[0].definition;
+                  partOfSpeech.innerText = res[0].meanings[0].partOfSpeech;
+                  example.innerText = res[0].meanings[0].definitions[0].example || "Example not available.";
+              })
+              .catch(err => {
+                  console.log(err);
+                  definition.innerText = "That word is not defined in our dictionary. Check for spelling errors and try again.";
+                  partOfSpeech.innerText = "Error";
+                  example.innerText = "";
+                })
         }
     </script>
 </head>
@@ -145,7 +165,6 @@
     </div>
     <div class="footer">
         Definitions courtesy of <a href="http://www.lexico.com">lexico.com</a> | A project by Gray Lewis
-    </div>
-    
+    </div>  
 </body>
 </html>
